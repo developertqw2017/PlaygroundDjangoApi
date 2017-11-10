@@ -23,7 +23,7 @@ class Choice(models.Model):
 
 class playground(models.Model):
     Pid = models.AutoField(max_length = 4, primary_key = True)
-    Pname = models.CharField(max_length = 20, blank = False)
+    Pname = models.CharField(max_length = 20, blank = False, unique = True)
     Pinfomation = models.CharField(max_length = 400,  blank = False)
     Popentime = models.DateTimeField(db_column = 'Popentime', blank = False)
     Ptel = models.IntegerField(max_length = 8, blank = False)
@@ -55,10 +55,9 @@ class ticket(models.Model):
     Tprice = models.FloatField(blank = False, default = 0.00)
     Tdatetime = models.DateTimeField(blank = False)
     Tproject = models.IntegerField(max_length = 8, blank = False)
-    TplaygroundId = models.IntegerField(max_length = 4, blank = False, default = 'none')
+    TplaygroundId = models.ForeignKey(playground)
 
 class entertainment(models.Model):
-    Eid = models.AutoField(max_length = 8)
     Ename = models.CharField(max_length = 20, blank = False)
     Eaddress = models.CharField(max_length = 100, blank = False)
     Eopentime = models.DateTimeField(blank = False)

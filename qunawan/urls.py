@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+from polls import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-]
+    url(r'playground/(\S{1,30})$', views.search_playground),
+    ]
