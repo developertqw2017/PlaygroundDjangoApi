@@ -49,13 +49,19 @@ class Comment(models.Model):
     Cfloor = models.IntegerField(max_length = 4, blank = False, default = 0)
     Ccontent = models.CharField(max_length = 400, blank = False)
 
+class project(models.Model):
+    proid = models.AutoField(max_length = 8,primary_key = True)
+    proname = models.CharField(max_length = 30,blank = False)
+    prodesc = models.CharField(max_length = 400,blank = False)
+    pmark = models.FloatField(blank = False)
+
 class ticket(models.Model):
     Tid = models.AutoField(max_length = 8, primary_key = True)
     Ttype = models.CharField(max_length = 20, blank = False, default = '空')
     Tprice = models.FloatField(blank = False, default = 0.00)
     Tdatetime = models.DateTimeField(blank = False)
-    Tproject = models.IntegerField(max_length = 8, blank = False)
-    TplaygroundId = models.ForeignKey(playground)
+    Tproject = models.ForeignKey(project)
+    TplaygroundId_id = models.ForeignKey(playground)
 
 class entertainment(models.Model):
     Ename = models.CharField(max_length = 20, blank = False)
@@ -66,8 +72,5 @@ class entertainment(models.Model):
 
 class userticket(models.Model):
     Uid = models.IntegerField(max_length = 4,blank = False)
-    Uticket = models.IntegerField(max_length = 8, blank = False)
-    Uticketstatus = models.IntegerField(max_length = 4,blank = False ,default = 0)
-
-
-# Create your models here.
+    Uticket = models.ForeignKey(ticket)
+    Uticketstatus = models.IntegerField(max_length = 4,blank = False ,default = 0)# Create your models here.

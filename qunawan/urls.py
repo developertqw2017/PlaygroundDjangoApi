@@ -19,4 +19,5 @@ from polls import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'playground/(\S{1,30})$', views.search_playground),
+    url(r'ticket/(\S{1,30})$', views.search_ticket),
     ]
