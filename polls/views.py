@@ -18,12 +18,13 @@ def search_ticket(request,name):
     sear = playground.objects.get(Pname=name)
     qq = sear.ticket_set.all()
     resp3 = [x for x in range(len(qq))]
-    d3 = {}
+    d3 = [x for x in range(len(qq))]
     #resp = [x for x in range(len(qq))]
     for x in range(len(qq)):
         qq[x].__delattr__('Tdatetime')
         qq[x].__delattr__('_state')
-        d3.update(qq[x].__dict__)
+        qq[x].__delattr__('_TplaygroundId_id_cache')
+        d3[x] = qq[x].__dict__
     resp3 = json.dumps(d3)
     return HttpResponse(resp3)
 
