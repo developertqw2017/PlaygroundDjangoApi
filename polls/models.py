@@ -41,19 +41,13 @@ class userDynamicInfo(models.Model):
     DIid = models.IntegerField(max_length = 11)
     Uaddress = models.IntegerField()
 
-class Comment(models.Model):
-    Cid = models.AutoField(max_length = 8, primary_key = True)
-    Cuid = models.IntegerField(max_length = 11, db_column = 'Cuid')
-    Ctime = models.DateTimeField(blank = False, default = datetime.datetime.now())
-    Clight = models.IntegerField(max_length = 4, blank = False, default = 0)
-    Cfloor = models.IntegerField(max_length = 4, blank = False, default = 0)
-    Ccontent = models.CharField(max_length = 400, blank = False)
 
 class project(models.Model):
     proid = models.AutoField(max_length = 8,primary_key = True)
     proname = models.CharField(max_length = 30,blank = False)
     prodesc = models.CharField(max_length = 400,blank = False)
     pmark = models.FloatField(blank = False)
+    proplay = models.ForeignKey(playground)
 
 class ticket(models.Model):
     Tid = models.AutoField(max_length = 8, primary_key = True)
@@ -73,4 +67,15 @@ class entertainment(models.Model):
 class userticket(models.Model):
     Uid = models.IntegerField(max_length = 4,blank = False)
     Uticket = models.ForeignKey(ticket)
-    Uticketstatus = models.IntegerField(max_length = 4,blank = False ,default = 0)# Create your models here.
+    Uticketstatus = models.IntegerField(max_length = 4,blank = False ,default = 0)
+
+class Comment(models.Model):
+    Cid = models.AutoField(max_length = 8, primary_key = True)
+    Cuid = models.IntegerField(max_length = 11, db_column = 'Cuid')
+    Ctime = models.DateTimeField(blank = False, default = datetime.datetime.now())
+    Clight = models.IntegerField(max_length = 4, blank = False, default = 0)
+    Cfloor = models.IntegerField(max_length = 4, blank = False, default = 0)
+    Ccontent = models.CharField(max_length = 400, blank = False)
+    Cproject = models.ForeignKey(project)
+
+    # Create your models here.

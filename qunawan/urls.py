@@ -20,4 +20,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'playground/(\S{1,30})$', views.search_playground),
     url(r'ticket/(\S{1,30})$', views.search_ticket),
+    url(r'project/(\S{1,30})$',views.search_project),
+    url(r'project/(\S{1,30})/comment$',views.search_comment),
+
     ]
