@@ -34,9 +34,9 @@ def search_comment(request,name):
 def search_userticket(request,name):
     sear = userBaseInfo.objects.get(Uname=name)
     sear_ticket = userticket.objects.filter(Uid = sear.Uid)
-    sear_ticket = [st.__delattr__('_state') for st in sear_ticket]
-    sear_ticketid = [ticket.objects.get(Tid = st.Uticket) for st in sear_ticket]
-    sear_ticketinfo = [st.__delattr__('_state') for st in sear_ticketid]
-    resp1 = json.dumps(sear_ticket.__dict__)
-    resp2 = json.dumps(sear_ticketinfo.__dict__)
+    #sear_ticket = [st.__delattr__('_state') for st in sear_ticket]
+    sear_ticketid = [ticket.objects.get(Tid=x) for x in [st.Uticket for st in sear_ticket]]
+    for st in range(len(sear_ticketid)):
+        sear_ticketid.__delattr__('_state')
+    resp2 = json.dumps(sear_ticketid.__dict__)
     return HttpResponse({resp1,resp2})
